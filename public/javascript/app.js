@@ -3,9 +3,10 @@ var app = angular.module('gradsar', ['sar_service']);
 
 app.config(function($routeProvider) {
   $routeProvider.
-    //when('/', {controller:SARController, templateUrl:'/static/main.html'}).
-    when('/2555', {controller:SARController, templateUrl:'/static/main.html'}).
-    when('/2555/1', {controller:SARController, templateUrl:'/static/2555/1.html'});
+    when('/', {controller:SARController, templateUrl:'/static/index.html'}).    
+    when('/:saryear', {controller:SARController, templateUrl: '/static/urlRouter.html'}).
+    when('/:saryear/:element', {controller:SARController, templateUrl:'/static/urlRouter.html'});
+	
 });
 
 
@@ -45,7 +46,15 @@ app.directive('filecontent',function () {
     };
     });
     
-function SARController($scope,SarDB) {
+function SARController($scope, $routeParams, SarDB) {
+  if(!$routeParams.element) {
+	$scope.templateUrl = '/static/'+$routeParams.saryear+'/main.html';
+  } else {
+	$scope.templateUrl = '/static/'+$routeParams.saryear+'/'+$routeParams.element+'.html';
+  }
+  
+  console.log('load SARController');
+  console.log($routeParams);
   $scope.sar_year = 2555;
   $scope.sar_list = SarDB.query();    
   

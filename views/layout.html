@@ -76,20 +76,35 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project Name</a>
+          <a class="brand" href="#">SAR File Upload Manager</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Manager</a></li>
-              <li><a href="#csv">CSV</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="#">Home</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid" ng-view>
-        {{{body}}}
+    <div class="container-fluid">		
+		<div class="span3">
+		  <div class="well sidebar-nav">
+			<ul class="nav nav-list">
+			  <li class="nav-header" onclick="$('#toggle_sar2555').collapse('toggle')">
+				SAR 2555
+				<i class="icon-chevron-down pull-right"></i>
+			  </li>
+			  <li><a href="#/2555"><i class="icon-folder-open"></i> View Contents</a></li>
+			  <ul class="unstyled collapse nav nav-list" id="toggle_sar2555">
+				<li><a href="#/2555/1"><i class="icon-list-alt"></i> องค์ประกอบที่ 1</a> ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ</li>		
+			  </ul>
+			  <li class="divider"></li>
+			</ul>
+		  </div>
+		</div>
+		<div class="span9" ng-view>
+			{{{body}}}
+        </div>
     </div>
 
 
