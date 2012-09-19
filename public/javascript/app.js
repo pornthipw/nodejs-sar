@@ -11,7 +11,11 @@ app.config(function($routeProvider) {
 });
 
 
-function UploadController($scope) {
+function UploadController($scope,SarDB) {
+  $scope.file_item = SarDB.get({year:'2555',element:'1',type:'1.1',item:'1'});
+  console.log($scope.file_item);
+  
+  
   $scope.elements = [
     {id:'1', name:'องค์ประกอบที่ 1', description:'ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ', id1:true},
     {id:'7', name:'องค์ประกอบที่ 7', description:'การบริหารและการจัดการ', id7:true},

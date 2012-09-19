@@ -14,8 +14,11 @@
 
     
     
-  <form id="file_upload_form" method="post" enctype="multipart/form-data" action="/gridstore/mydb" target="upload_target" class="form-horizontal">            
-    <input type="hidden" name="id" ng-model="element.id">
+  <form id="file_upload_form" method="post" enctype="multipart/form-data" action="/sar/upload" target="upload_target" class="form-horizontal">            
+    <input type="hidden" name="year" value="2555">
+    <input type="hidden" name="element" value="1">
+    <input type="hidden" name="type" value="1.1">
+    <input type="hidden" name="item" value="1">
       
     <span class="btn btn-success fileinput-button">
       <i class="icon-plus icon-white"></i>
@@ -27,8 +30,7 @@
       <i class="icon-upload icon-white"></i>
       <span>Start Upload</span>
     </button>                
-    
-    
+        
   </form>
     
     
@@ -53,9 +55,10 @@
     {{element.name}}<br>
     {{type.name}}<br>
         {{item.name}}<br>
-  
-    
-
+      
+  <ul>
+    <li ng-repeat="file in file_item.files">{{file.filename}}</li>
+  </ul>
   
   <span>
     <span ng-show="theFile">
