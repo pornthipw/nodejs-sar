@@ -1,5 +1,35 @@
-<div class="row-fluid">
-<ol>
-    <li><a href="#/2555/1">องค์ประกอบที่ 1</a> ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ </li>
-</ol>
+
+    <div class="row-fluid">
+    <ol>
+	<li><a href="#/2555/1">องค์ประกอบที่ 1</a> ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ </li>
+    </ol>
+    </div>
+
+
+<div ng-show="showLoginPage">
+    <form ng-submit="submit()" >
+	<table border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+		<th>Username</th>
+		<td><input type="text" class="login-inp" ng-model="username"></td>
+	    </tr>
+	    <tr>
+		<th>Password</th>
+		<td><input type="password" class="login-inp" ng-model="password"></td>
+	    </tr>
+	    <tr>
+		<th></th>
+		<td><button type="submit" class="btn btn-primary">
+                    <i class="icon-folder-open icon-white"></i> Login
+                </button></td>
+	    </tr>
+	</table>
+    </form>
+</div>
+<div ng-show="showMainPage">
+    <a href="" ng-click="restrictedAction()"> Login </a>
+</div>
+
+<div ng-show="showContentPage">
+{{username}}
 </div>

@@ -42,17 +42,27 @@
     <label>ตัวบ่งชี้</label>
       <select ng-model="type" ng-options="c.name for c in types1"  ng-show="element.id1"></select>
       <select ng-model="type" ng-options="c.name for c in types7"  ng-show="element.id7"></select>
+      <select ng-model="type" ng-options="c.name for c in types8"  ng-show="element.id8"></select>
+      <select ng-model="type" ng-options="c.name for c in types9"  ng-show="element.id9"></select>
+      <select ng-model="type" ng-options="c.name for c in types10"  ng-show="element.id10"></select>
     </label>
     <label>เกณฑ์การประเมิน</label>
       <select ng-model="item" ng-options="c.name for c in items1_1"  ng-show="type.id1_1"></select>
-      
+      <select ng-model="item" ng-options="c.name for c in items7_1"  ng-show="type.id7_1"></select>
+      <select ng-model="item" ng-options="c.name for c in items7_2"  ng-show="type.id7_2"></select>
+      <select ng-model="item" ng-options="c.name for c in items7_3"  ng-show="type.id7_3"></select>
+      <select ng-model="item" ng-options="c.name for c in items7_4"  ng-show="type.id7_4"></select>
+      <select ng-model="item" ng-options="c.name for c in items8_1"  ng-show="type.id8_1"></select>
+      <select ng-model="item" ng-options="c.name for c in items9_1"  ng-show="type.id9_1"></select>
+      <select ng-model="item" ng-options="c.name for c in items10_1"  ng-show="type.id10_1"></select>
     </label>
     <br>
     {{color.description}}
     
     {{element.name}}<br>
     {{type.name}}<br>
-        {{item.name}}<br>
+        {{item.description}}<br>
+
   
     
 
