@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta charset="utf-8">
     <title>{{title}}</title>  
     <base href="{{ baseHref }}">
     
@@ -10,8 +11,9 @@
         padding-bottom: 40px;
     }
     </style>
-
+<!--
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.js"></script>
@@ -87,25 +89,25 @@
     </div>
 
     <div class="container-fluid">		
-		<div class="span3">
-		  <div class="well sidebar-nav">
-			<ul class="nav nav-list">
-			  <li class="nav-header" onclick="$('#toggle_sar2555').collapse('toggle')">
-				SAR 2555
-				<i class="icon-chevron-down pull-right"></i>
-			  </li>
-			  <li><a href="#/2555"><i class="icon-folder-open"></i> View Contents</a></li>
-			  <ul class="unstyled collapse nav nav-list" id="toggle_sar2555">
-				<li><a href="#/2555/1"><i class="icon-list-alt"></i> องค์ประกอบที่ 1</a> ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ</li>		
-			  </ul>
-			  <li class="divider"></li>
-			</ul>
+      <div class="span3">
+        <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header" onclick="$('#toggle_sar2555').collapse('toggle')">
+          SAR 2555
+          <i class="icon-chevron-down pull-right"></i>
+          </li>
+          <li><a href="#/2555"><i class="icon-folder-open"></i> View Contents</a></li>
+          <ul class="unstyled collapse nav nav-list" id="toggle_sar2555">
+          <li><a href="#/2555/1"><i class="icon-list-alt"></i> องค์ประกอบที่ 1</a> ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ</li>		
+          </ul>
+          <li class="divider"></li>
+        </ul>
 		  </div>
-		</div>
-		<div class="span9" ng-view>
-			{{{body}}}
-        </div>
     </div>
+    <div class="span9" ng-view>
+			{{{body}}}
+    </div>
+  </div>
 
 
 

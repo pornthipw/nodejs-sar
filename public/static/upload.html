@@ -1,0 +1,76 @@
+<div class="row-fluid">
+  
+  <div class="span12">  
+  
+  <ol>
+      <li ng-repeat="sar in sar_list">{{sar}}</li>
+  </ol>
+  
+  <iframe id="upload_target" 
+    name="upload_target" 
+    style="width:0;height:0;border:0px solid #fff;"> 
+  </iframe>
+    
+
+    
+    
+  <form id="file_upload_form" method="post" enctype="multipart/form-data" action="/gridstore/mydb" target="upload_target" class="form-horizontal">            
+    <input type="hidden" name="id" ng-model="element.id">
+      
+    <span class="btn btn-success fileinput-button">
+      <i class="icon-plus icon-white"></i>
+      <span>Select File</span>
+      <input type="file" name="file" id="file" onchange="angular.element(this).scope().setFile(this)"/>
+    </span>
+    
+    <button type="submit" class="btn btn-primary start">
+      <i class="icon-upload icon-white"></i>
+      <span>Start Upload</span>
+    </button>                
+    
+    
+  </form>
+    
+    
+    <legend>Legend</legend>
+    <label>ชื่อเอกสาร</label>
+      <input type="text" >      
+    </label>
+    <label>องค์ประกอบ</label>
+      <select ng-model="element" ng-options="c.name for c in elements"></select>
+    </label>
+    <label>ตัวบ่งชี้</label>
+      <select ng-model="type" ng-options="c.name for c in types1"  ng-show="element.id1"></select>
+      <select ng-model="type" ng-options="c.name for c in types7"  ng-show="element.id7"></select>
+    </label>
+    <label>เกณฑ์การประเมิน</label>
+      <select ng-model="item" ng-options="c.name for c in items1_1"  ng-show="type.id1_1"></select>
+      
+    </label>
+    <br>
+    {{color.description}}
+    
+    {{element.name}}<br>
+    {{type.name}}<br>
+        {{item.name}}<br>
+  
+    
+
+  
+  <span>
+    <span ng-show="theFile">
+      <i class="icon-file"></i>
+      {{theFile.name}}
+    </span>    
+    <span ng-switch on="success" >
+      <span ng-switch-when="true">
+        <i class="icon-ok"></i>
+      </span>
+      <span ng-switch-when="false">
+        <i class="icon-info-sign"></i>
+        {{message}}
+      </span>  
+      <span ng-switch-default></span>              
+    </span>
+  </span>    
+</div>
