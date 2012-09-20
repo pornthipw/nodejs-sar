@@ -31,66 +31,45 @@ var sarinfo = [];
 
 var db = new mongodb.Db('sar', new mongodb.Server(host, port, dbOptions));
 
-
 var updateSarInfo = function(db, callback) {    
-    sarinfo = [];
-    db.collectionNames(function(err, result) {        
-        for (var r in result) {            
-            var coll = utils.parseCollectionName(result[r].name);        
-            db.collection(coll.name, function(err, collection) {     
-                var self = coll.name;                           
-                collection.findOne({type:'sar_info'}, function(err, doc) {
-                    if(!err && doc) {
-                        console.log('result -> '+JSON.stringify(doc) +'  '+self);
-                        sarinfo.push({collection:self, content:doc});
-                    }
-                });
-            });             
-        }        
-    });
+  sarinfo = [];
+  db.collectionNames(function(err, result) {        
+    for (var r in result) {            
+      var coll = utils.parseCollectionName(result[r].name);        
+      db.collection(coll.name, function(err, collection) {     
+        var self = coll.name;                           
+        collection.findOne({type:'sar_info'}, function(err, doc) {
+          if(!err && doc) {
+            console.log('result -> '+JSON.stringify(doc) +'  '+self);
+            sarinfo.push({collection:self, content:doc});
+          }
+        });
+      });             
+    }        
+  });
 };
 
 db.open(function(err, db) {
-    if (err) {
-        throw err;
-    }
-    console.log('Database connected');
-    database = db;        
-    updateSarInfo(db);        
+  if (err) {
+      throw err;
+  }  
+  database = db;        
+  updateSarInfo(db);        
 });
 
 
 var middleware = function(req, res, next) {
-    req.database = database;
-    next();
+  req.database = database;
+  next();
 };
 
 app.locals({        
-    baseHref:config.site.baseUrl
+  baseHref:config.site.baseUrl
 });
 
-
-
-
-app.get('/sar/:collection/:element/:type/:item', middleware, function(req, res) {
-    console.log(req.params.collection);
-    req.database.collection(req.params.collection, function(err, collection) {
-        
-        if(err) {
-            console.log(err);
-        }
-        
-        collection.find({'element':req.params.element, 'type':req.params.type, 'item':req.params.item}).toArray(function(err, docs) {            
-            res.json(docs);
-        });
-    });    
-});
-
-
-app.get('/sar', middleware, function(req, res) {
-  res.json(sarinfo);  
-});
-
+app.get('/files/:year/:element/:type/:item', middleware, routes.listFile);
+app.get('/file/:file', middleware, routes.getFile);
+app.post('/sar/upload', middleware, routes.storeFile);
 app.get('/', middleware, routes.index);
 
 app.listen(config.site.port || 3000);
