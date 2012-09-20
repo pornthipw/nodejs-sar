@@ -4,17 +4,18 @@ var app = angular.module('gradsar', ['sar_service']);
 app.config(function($routeProvider) {
     $routeProvider.
 	when('/', {controller:SARController, templateUrl:'/static/index.html'}).    
-	when('/upload', {controller:UploadController, templateUrl:'/static/upload.html'}).
+	when('/upload/:saryear', {controller:UploadController, templateUrl:'/static/upload.html'}).
 	when('/:saryear', {controller:SARController, templateUrl: '/static/urlRouter.html'}).
 	when('/:saryear/:element', {controller:SARController, templateUrl:'/static/urlRouter.html'});
 	
 });
 
 
-function UploadController($scope,SarDB) {
+function UploadController($scope, $routeParams, SarDB) {
+  //$scope.file_item = SarDB.get({year:'2555',element:'1',type:'1.1',item:'1'});
   $scope.file_item = SarDB.get({year:'2555',element:'1',type:'1.1',item:'1'});
+  $scope.sar_year = $routeParams.saryear;
   console.log($scope.file_item);
-  
   
   $scope.elements = [
     {id:'1', name:'องค์ประกอบที่ 1', description:'ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ', id1:true},

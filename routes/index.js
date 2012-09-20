@@ -12,7 +12,7 @@ exports.index = function(req, res) {
 };
 
 exports.getFile = function(req, res, next) {
-  var gridStore = new mongodb.GridStore(req.database, mongodb.ObjectID,req.files.file.name, 'w');
+  // var gridStore = new mongodb.GridStore(req.database, mongodb.ObjectID,req.files.file.name, 'w');
 };
 
 
@@ -57,9 +57,13 @@ exports.listFile = function(req, res, next) {
 };
 
 exports.storeFile = function(req, res, next) {      
-  // req.body { year: '2555', element: '1', type: '1.1', item: '1' }  
+  // req.body { year: '2555', element: '1', type: '1.1', item: '1' , title:'namefile'}  
+  
+  // console.log(req.files.file);
+  
+  
   if(req.files.file) {          
-    var gridStore = new mongodb.GridStore(req.database, new mongodb.ObjectID(),req.files.file.name, 'w');    
+    var gridStore = new mongodb.GridStore(req.database, new mongodb.ObjectID(),req.files.file.name, 'w', {content_type:req.files.file.type});    
     gridStore.open(function(err, gridStore) {
       gridStore.writeFile(req.files.file.path, function(err, doc) {                
         if(err) {          
@@ -79,6 +83,7 @@ exports.storeFile = function(req, res, next) {
                 element:req.body.element, 
                 type:req.body.type, 
                 item:req.body.item,
+                title:req.body.title,
                 file_id:result._id}, function(err, result) {
                   if(err) {
                     res.send(JSON.stringify({success:false,message:err}));              

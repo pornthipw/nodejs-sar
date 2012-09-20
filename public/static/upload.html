@@ -11,14 +11,13 @@
     style="width:0;height:0;border:0px solid #fff;"> 
   </iframe>
     
-
-    
-    
+    {{sar_year}}/{{element.id}}/{{type.id}}/{{item.id}}
   <form id="file_upload_form" method="post" enctype="multipart/form-data" action="/sar/upload" target="upload_target" class="form-horizontal">            
-    <input type="hidden" name="year" value="2555">
-    <input type="hidden" name="element" value="1">
-    <input type="hidden" name="type" value="1.1">
-    <input type="hidden" name="item" value="1">
+    <input type="hidden" name="year" ng-model="sar_year" value="{{sar_year}}">
+    <input type="hidden" name="element" ng-model="element.id" value="{{element.id}}">
+    <input type="hidden" name="type" ng-model="type.id" value="{{type.id}}">
+    <input type="hidden" name="item" ng-model="item.id" value="{{item.id}}">    
+    <input type="hidden" name="title" value="{{title}}">    
       
     <span class="btn btn-success fileinput-button">
       <i class="icon-plus icon-white"></i>
@@ -36,7 +35,7 @@
     
     <legend>Legend</legend>
     <label>ชื่อเอกสาร</label>
-      <input type="text" >      
+      <input type="text" ng-model="title">      
     </label>
     <label>องค์ประกอบ</label>
       <select ng-model="element" ng-options="c.name for c in elements"></select>
