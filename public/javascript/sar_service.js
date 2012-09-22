@@ -1,9 +1,18 @@
-angular.module('sar_service', ['ngResource']).
-  factory('SarDB', function($resource) {
+var app = angular.module('sar_service', ['ngResource']);
+
+app.factory('SarDB', function($resource) {
     var SarDB  = $resource('/files/:year/:element/:type/:item/', 
       {year:'@year',element:'@element',type:'@type',item:'@item'},
       {}            
     );           
     return SarDB;
+});
+
+app.factory('CsvDB', function($resource) {
+    var CsvDB  = $resource('/csv', 
+      {},
+      {}            
+    );           
+    return CsvDB;
 });
 

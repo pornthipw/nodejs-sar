@@ -1,0 +1,25 @@
+<!----ตัวบ่งชี้ (ViewFile) Item----->
+
+<div class="row-fluid">
+    <div class="span12">
+
+        <span>
+          <ul class="breadcrumb">
+            <li><a href="/#/path/{{saryear}}/{{element}}">องค์ประกอบที่ 1</a> <span class="divider">/</span></li>
+            <li><a href="/#/path/{{saryear}}/{{element}}/{{type}}">ตัวบ่งชี้ที่ 1.1</a> กระบวนการพัฒนาแผน ชนิดของตัวบ่งชี้ : กระบวนการ <span class="divider">/ </span></li>
+            <li>หลักฐาน <span class="divider">/ </span> </li>
+          </ul>
+        </span>
+        <!------>
+        <ol>
+          <li ng-repeat="file in file_list.files">{{file.filename}}</li>
+        </ol>
+        <div class="row-fluid">
+            <a class="btn btn-primary"  href="/#upload/{{saryear}}/{{element}}/{{type}}/1">
+            <i class="icon-upload icon-white"></i>
+            Add Document                
+            </a>
+        </div>
+        
+     </div>
+</div>

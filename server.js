@@ -72,6 +72,15 @@ app.get('/file/:file', middleware, routes.getFile);
 app.post('/sar/upload', middleware, routes.storeFile);
 app.get('/', middleware, routes.index);
 
+// test csv reader
+app.get('/csv', middleware, function(req, res) {
+    var content  = [
+	{col1:'r01',col2:'r02', col3:'r03',col4:'r04'},
+	{col1:'r11',col2:'r12', col3:'r13',col4:'r14'}	
+    ];
+    res.json(content);
+});
+
 app.listen(config.site.port || 3000);
 
 console.log("Mongo Express server listening on port " + (config.site.port || 3000));

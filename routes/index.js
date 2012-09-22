@@ -12,28 +12,60 @@ exports.index = function(req, res) {
 };
 
 exports.getFile = function(req, res, next) {
-  // var gridStore = new mongodb.GridStore(req.database, mongodb.ObjectID,req.files.file.name, 'w');
+    //var gridStore = new mongodb.GridStore(req.database, mongodb.ObjectID,req.files.file.name, 'w');
+    if (req.params.file.length == 24) {
+    //Convert id string to mongodb object ID
+	try {
+	    id = new mongodb.ObjectID.createFromHexString(req.params.file);
+	    var gridStore = new mongodb.GridStore(req.database, id, 'r');
+	    gridStore.open(function(err, gs) {
+		gs.collection(function(err, collection) {
+		    collection.find({_id:id}).toArray(function(err,docs) {
+			var doc = docs[0];
+			console.log(doc.filename);
+			var stream = gs.stream(true);
+			res.setHeader('Content-dispostion', 'attachment;filename='+doc.filename);
+			res.setHeader('Content-type',doc.contentType);
+			stream.on("data", function(chunk) {
+			    res.write(chunk);
+			});
+		
+			stream.on("end", function() {
+			    res.end();
+			});
+		    });
+		});
+	    });
+	} catch (err) {
+	}
+    }
+    
+    console.log('getFile '+req.params.file);
 };
-
 
 exports.listFile = function(req, res, next) {  
   // req.params [year, element, type, item]  
-  console.log('listFile');  
+  console.log('listFile '+req.params.year);
+  console.log('params : E'+req.params.element + ' T'+req.params.type + ' I'+req.params.item);  
   req.database.collection('sar'+req.params.year, function(err, collection) {
     if(err) {            
+      console.log("Error :"+err);
       res.json({success:false,message:err});              
     }
+    
+    
     collection.find({
         element:req.params.element, 
         type:req.params.type, 
         item:req.params.item}).toArray(function(err, docs) {
-          if(err) {
+	  if(err) {
             res.json({success:false,message:err});              
-          }                                         
+          }  
           var file_ids = [];
           for(var idx in docs) {
             file_ids.push(docs[idx].file_id);
-          }          
+          }    
+	           
           var gridStore = new mongodb.GridStore(req.database, new mongodb.ObjectID(), 'w');    
           gridStore.open(function(err, gridStore) {
             if(err) {
@@ -43,7 +75,8 @@ exports.listFile = function(req, res, next) {
             gridStore.collection(function(err, collection) {
               if(err) {
                 res.json({success:false,message:err});              
-              }                                         
+              }            
+	                                
               collection.find({_id:{ $in: file_ids}}).toArray(function(err, docs) {
                 console.log(docs.length);
                 res.json({success:true,files:docs});            
