@@ -1,6 +1,5 @@
 var app = angular.module('gradsar', ['sar_service']);
 
-
 app.config(function($routeProvider) {
     $routeProvider.
 	//when('/', {controller:FileController, templateUrl:'/static/index.html'}).    
@@ -15,13 +14,38 @@ app.config(function($routeProvider) {
 	when('/:saryear/:element', {controller:SARController, templateUrl:'/static/urlRouter.html'});	
 });
 
+app.directive('filelist', function(SarDB) {
+  return {
+    restrict:"E",    
+    scope: {
+      year:'=year'
+    },
+    link:function ($scope, element, attrs) {                                                  
+      SarDB.query({
+        year:$scope.year,
+        element:attrs.element,
+        type:attrs.type,
+        item:attrs.item},function(content) {
+          var htmlStr = '<ol>';
+          for(var idx in content) {   
+            console.log(content[idx]);                   
+            htmlStr+='<li><a href="/file/'+content[idx].file_id+'">'+content[idx].title+'</a></li>'
+          }
+          htmlStr+="</ol>";
+          element.replaceWith(htmlStr);
+      });                
+    }
+  };
+});
+
+
 function PathController($scope, $routeParams, SarDB) {
     $scope.saryear = $routeParams.saryear;
     $scope.templateUrl = '/static/'+$scope.saryear+'/index.html';
     if($routeParams.element) {
 	$scope.element = $routeParams.element;
-	$scope.type = $routeParams.type;
-	$scope.item = $routeParams.item;
+//	$scope.type = $routeParams.type;
+//	$scope.item = $routeParams.item;
 	$scope.templateUrl = '/static/'+$scope.saryear+'/'+$scope.element+'/index.html';
 
     } 

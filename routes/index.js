@@ -58,9 +58,11 @@ exports.listFile = function(req, res, next) {
         element:req.params.element, 
         type:req.params.type, 
         item:req.params.item}).toArray(function(err, docs) {
-	  if(err) {
-            res.json({success:false,message:err});              
-          }  
+        if(err) {
+          res.json({success:false,message:err});              
+        }
+        res.json(docs);  
+          /*
           var file_ids = [];
           for(var idx in docs) {
             file_ids.push(docs[idx].file_id);
@@ -84,7 +86,7 @@ exports.listFile = function(req, res, next) {
               });
             });
           });
-          
+          */        
     });            
   });                    
 };
