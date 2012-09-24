@@ -16,3 +16,10 @@ app.factory('CsvDB', function($resource) {
     return CsvDB;
 });
 
+app.factory('SarInfoDB', function($resource) {
+    var SarInfoDB  = $resource('/info/:year/:element/:type/', 
+      {year:'@year',element:'@element',type:'@type'},
+      {}            
+    );           
+    return SarInfoDB;
+});

@@ -6,8 +6,8 @@ app.config(function($routeProvider) {
 	//when('/upload', {controller:UploadController, templateUrl:'/static/upload.html'}).
 	when('/path/:saryear', {controller:PathController, templateUrl:'/static/urlRouter.html'}).
 	when('/path/:saryear/:element', {controller:PathController, templateUrl:'/static/urlRouter.html'}).
-	when('/path/:saryear/:element/:type', {controller:PathController, templateUrl:'/static/urlRouter.html'}).
-	when('/path/:saryear/:element/:type/:item', {controller:PathController, templateUrl:'/static/urlRouter.html'}).
+	// when('/path/:saryear/:element/:type', {controller:PathController, templateUrl:'/static/urlRouter.html'}).
+	// when('/path/:saryear/:element/:type/:item', {controller:PathController, templateUrl:'/static/urlRouter.html'}).
 	when('/upload/:saryear/:element/:type/:item', {controller:UploadController, templateUrl:'/static/upload.html'}).
 	when('/csv', {controller:CSVController, templateUrl:'/static/csv.html'}).
 	when('/:saryear', {controller:SARController, templateUrl: '/static/urlRouter.html'}).	
@@ -39,6 +39,37 @@ app.directive('filelist', function(SarDB) {
 });
 
 
+app.directive('getvalue', function(SarDB) {
+  return {
+    restrict:"E",    
+    scope: {
+      description:'=model'
+    },
+    link:function ($scope, element, attrs) {                                                  
+        console.log($scope.description);
+        var htmlStr = '';
+        for(var idx in $scope.description) {
+            if($scope.description[idx].type == attrs.type) {                                
+                htmlStr = $scope.description[idx][attrs.key];                                
+            }
+        }        
+        element.replaceWith(htmlStr);                          
+    }
+  };
+});
+
+
+app.directive ('unfocus', function() { 
+    return {
+        restrict: 'A',
+        link: function ($scope, element, attribs) {
+            
+
+        }
+    } 
+});
+
+
 function PathController($scope, $routeParams, SarDB) {
     $scope.saryear = $routeParams.saryear;
     $scope.templateUrl = '/static/'+$scope.saryear+'/index.html';
@@ -49,7 +80,7 @@ function PathController($scope, $routeParams, SarDB) {
 	$scope.templateUrl = '/static/'+$scope.saryear+'/'+$scope.element+'/index.html';
 
     } 
-    
+    /*
     if($routeParams.type) {
 	$scope.type = $routeParams.type;
 	$scope.templateUrl = '/static/'+$scope.saryear+'/'+$scope.element+'/'+$scope.type+'/index.html';
@@ -60,7 +91,18 @@ function PathController($scope, $routeParams, SarDB) {
 	$scope.templateUrl = '/static/'+$scope.saryear+'/'+$scope.element+'/'+$scope.type+'/'+$scope.item+'.html';
 	$scope.file_list = SarDB.get({year:$scope.saryear,element:$scope.element,type:$scope.type,item:$scope.item});
     }
+    */
+    $scope.description = [
+        {type:'1_1', element:'1', current_score:'5', owner:'พรทิพย์ เม่นสิน'},
+        {type:'1_2', element:'1', current_score:'5', owner:'พรทิพย์ '}
+    ];
+    $scope.saveInfo = function(){
         
+    }
+    
+    //$scope.enableEdit = function() { $scope.edit = true; }
+    //$scope.disableEdit = function() { $scope.edit = false;  }
+
 };
 
 function CSVController($scope, CsvDB) {
