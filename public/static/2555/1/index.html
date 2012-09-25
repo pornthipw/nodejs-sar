@@ -73,7 +73,7 @@
 <div class="row-fluid">
     <div class="span12">
        
-        <div class="btn btn-large btn-primary span12">
+        <div class="btn btn-large btn-info1 span12">
           <div class="container" align="left"> 
               ตัวบ่งชี้ที่ 1.1  กระบวนการพัฒนาแผน ชนิดของตัวบ่งชี้ : กระบวนการ 
   
@@ -91,9 +91,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><a href="/#/path/{{saryear}}/{{element}}/1_1/1" ng-click="viewDetail(saryear,element,selectedtype,selecteditem)">1</a></td>
-                    <td>
+                <tr class="grad">
+                    <td >1</td>
+                    <td >
                       มีการจัดทำแผนกลยุทธ์ที่สอดคล้องกับนโยบายของสภาสถาบัน โดยการมีส่วนร่วมของบุคลากรในสถาบัน 
                       และได้รับความเห็นชอบจากสภาสถาบันโดยเป็นแผนที่เชื่อมโยงกับปรัชญาหรือ ปณิธานและพระราชบัญญัติสถาบัน 
                       ตลอดจนสอดคล้องกับจุดเน้นของกลุ่มสถาบัน กรอบแผนอุดมศึกษาระยะยาว 15 ปี ฉบับที่ 2 
@@ -113,7 +113,7 @@
                     </td>
                     <td><a href="/#upload/{{saryear}}/{{element}}/1_1/2"><i class="icon-plus-sign"></i></a></td>                            
                 </tr>
-                <tr>
+                <tr class="grad">
                     <td>3</td>
                     <td>
                       มีกระบวนการแปลงแผนกลยุทธ์เป็นแผนปฏิบัติการประจำปีครบ 4 พันธกิจ คือ 
@@ -129,7 +129,7 @@
                     <td> มีตัวบ่งชี้ของแผนกลยุทธ์ แผนปฏิบัติการประจำปี และค่าเป้าหมายของแต่ละตัวบ่งชี้เพื่อวัดความสำเร็จของการดำเนินงานตามแผนกลยุทธ์และแผนปฏิบัติการประจำปี</td>
                     <td><a href="/#upload/{{saryear}}/{{element}}/1_1/4"><i class="icon-plus-sign"></i></a></td>                            
                 </tr>
-                <tr>
+                <tr class="grad">
                     <td>5</td>
                     <td>มีการดำเนินงานตามแผนปฏิบัติการประจำปีครบ 4 พันธกิจ</td>
                     <td><a href="/#upload/{{saryear}}/{{element}}/1_1/5"><i class="icon-plus-sign"></i></a></td>                            
@@ -139,7 +139,7 @@
                     <td>มีการติดตามผลการดำเนินงานตามตัวบ่งชี้ของแผนปฏิบัติการประจำปี อย่างน้อยปีละ 2 ครั้ง และรายงานผลต่อผู้บริหารเพื่อพิจารณา</td>
                     <td><a href="/#upload/{{saryear}}/{{element}}/1_1/6"><i class="icon-plus-sign"></i></a></td>                            
                 </tr>
-                <tr>
+                <tr class="grad">
                     <td>7</td>
                     <td>มีการติดตามผลการดำเนินงานตามตัวบ่งชี้ของแผนปฏิบัติการประจำปี อย่างน้อยปีละ 2 ครั้ง และรายงานผลต่อผู้บริหารเพื่อพิจารณา</td>
                     <td><a href="/#upload/{{saryear}}/{{element}}/1_1/7"><i class="icon-plus-sign"></i></a></td>                            
@@ -177,7 +177,7 @@
           
             <table class="table table-bordered table-striped 12">
             <thead>
-              <th class="span2"> คะแนน 1</th>
+              <th class="span2" > คะแนน 1</th>
               <th class="span2"> คะแนน 2</th>
               <th class="span2"> คะแนน 3</th>
               <th class="span2"> คะแนน 4</th>
@@ -222,10 +222,12 @@
                         <div class="tab-content">
                           <div class="tab-pane active" id="tab1">
                             <p>ผู้รับผิดชอบ : 
-                                <getvalue model="description" type="1_2" key="owner"></getvalue> 
-                                    <a href="#/new"><i class="icon-plus-sign"></i></a>
+                            
+                            <inlineedit model="description.t1_1.owner"></inlineedit>
+                                
                             </p>
                             <p>
+                                {{description.t1_1.owner}}
                                   ผู้กำกับดูแลตัวบ่งชี้ : รองคณบดีฝ่ายบริหาร              เบอร์โทรภายใน : 2443 ต่อ 122  E-mail : nugulb@nu.ac.th <br>
                                   ผู้เก็บรวมรวบข้อมูล : หัวหน้างานแผนและสารสนเทศ  เบอร์โทรภายใน : 2443 ต่อ 112  E-mail : ornusab@nu.ac.th <br>
                             </p>

@@ -4,7 +4,7 @@
     <title>{{title}}</title>  
     <base href="{{ baseHref }}">
     
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">    
+    <link href="bootstrap/css/bootstrap2.css" rel="stylesheet">    
     <style type="text/css">
     body {
         padding-top: 60px;
@@ -87,29 +87,30 @@
         </div>
       </div>
     </div>
-
+    
+    <div class="container-fluid">
+        <div class="row-fluid">	
+            <div class="span12" >
+                <a href="#/path/2555/info" class="btn btn-info1"> ข้อมูลทั่วไป</a>
+                <a href="#/path/2555/1" class="btn btn-info1">องค์ประกอบที่ 1</a>
+                <a href="#/path/2555/7" class="btn btn-info1">องค์ประกอบที่ 7</a>
+                <a href="#/path/2555/8" class="btn btn-info1">องค์ประกอบที่ 8</a>
+                <a href="#/path/2555/9" class="btn btn-info1">องค์ประกอบที่ 9</a>
+                <a href="#/path/2555/10" class="btn btn-info1">องค์ประกอบที่ 10</a>
+            </div>
+        </div>
+    </div>
+    
     <div class="container-fluid">	
       <div class="row-fluid">	
-        <div class="span3">
+        <div class="span12" ng-view>
           <div class="well sidebar-nav">
-          <ul class="nav nav-list">
-            <li class="nav-header" onclick="$('#toggle_sar2555').collapse('toggle')">
-            SAR 2555
-            <i class="icon-chevron-down pull-right"></i>
-            </li>
-            <li><a href="#/2555"><i class="icon-folder-open"></i> View Contents</a></li>
-            <ul class="unstyled collapse nav nav-list" id="toggle_sar2555">
-            <li><a href="#/path/2555/1"><i class="icon-list-alt"></i> องค์ประกอบที่ 1</a> ปรัชญา ปณิธาน วัตถุประสงค์ และแผนดำเนินการ</li>		
-            </ul>
-            <li class="divider"></li>
-          </ul>
-        </div>
+                {{{body}}}
+
+        </div><!---well sidebar-nav-->
       </div>
-      <div class="span9" ng-view>
-        {{{body}}}
-      </div>
-    </div>
-  </div>
+    </div><!--row-fluid-->
+  </div><!---container-fluid-->
 
 
 </body>

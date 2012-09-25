@@ -14,6 +14,37 @@ app.config(function($routeProvider) {
 	when('/:saryear/:element', {controller:SARController, templateUrl:'/static/urlRouter.html'});	
 });
 
+app.directive('inlineedit', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            model: '=model',            
+        },
+        controller: function($scope, $element) {
+            $scope.editMode = false;
+            $scope.changeMode = function() {
+                if ($scope.editMode) {
+                    $scope.editMode = false;
+                } else {
+                    $scope.editMode = true;
+                }
+            };            
+        },
+        link: function($scope, element, attrs) {
+
+        },
+        template: 
+'<span ng-hide="editMode" ng-click="changeMode()">{{model}}' + 
+'<span><button class="btn btn-link" ng-click="changeMode()">'+
+'<i class="icon-edit"></i></button></span></span>'+ 
+'<span ng-show="editMode">'+
+'<input type="text" ng-model="model">'+
+'<button class="btn btn-primary" ng-click="changeMode()">Save</button>'+
+'</span>'
+    };
+});
+
+
 app.directive('filelist', function(SarDB) {
   return {
     restrict:"E",    
@@ -92,10 +123,12 @@ function PathController($scope, $routeParams, SarDB) {
 	$scope.file_list = SarDB.get({year:$scope.saryear,element:$scope.element,type:$scope.type,item:$scope.item});
     }
     */
-    $scope.description = [
-        {type:'1_1', element:'1', current_score:'5', owner:'พรทิพย์ เม่นสิน'},
-        {type:'1_2', element:'1', current_score:'5', owner:'พรทิพย์ '}
-    ];
+    $scope.description = {
+        t1_1: {current_score:'5', owner:'พรทิพย์ เม่นสิน'}
+    };
+        //{type:'1_1', element:'1', current_score:'5', owner:'พรทิพย์ เม่นสิน'},
+        //{type:'1_2', element:'1', current_score:'5', owner:'พรทิพย์ '}
+    //];
     $scope.saveInfo = function(){
         
     }
